@@ -1,0 +1,14 @@
+<html>
+    <script src="node_modules/azure-mobile-apps-client/dist/MobileServices.Web.js"></script>
+    <script>
+        window.onload = function () {
+            var client = new WindowsAzure.MobileServiceClient('https://daauth.azurewebsites.net');
+            client.login('facebook')
+                .then(function () {
+                    alert('logged in')
+                }, function (error) {
+                    alert(error.message)
+                })
+        }
+    </script>
+</html>
