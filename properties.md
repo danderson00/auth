@@ -321,7 +321,7 @@ No tokens, identifiers, names or email addresses below are valid.
   "user_claims": [
     {
       "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
-      "val": "21739128"
+      "val": "28739128"
     },
     {
       "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn",
@@ -333,7 +333,7 @@ No tokens, identifiers, names or email addresses below are valid.
     },
     {
       "typ": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/webpage",
-      "val": "http://t.co/RiSeRKwm2P"
+      "val": "http://t.co/RiSeRKwm1P"
     },
     {
       "typ": "urn:twitter:description",
