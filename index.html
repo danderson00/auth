@@ -1,11 +1,15 @@
 <html>
     <script src="node_modules/azure-mobile-apps-client/dist/MobileServices.Web.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.1.0/superagent.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.1.0/superagent.js"></script>-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    
     <script>
         window.onload = function () {
             var client = new WindowsAzure.MobileServiceClient('https://daauth.azurewebsites.net'),
-                providers = ['aad', 'facebook', 'google', 'twitter', 'microsoftaccount'],
-                results = {}
+                // providers = ['aad', 'facebook', 'google', 'twitter', 'microsoftaccount'],
+                providers = ['aad'],
+                results = {},
+                refresh = {}
 
             getNextIdentity(0)
 
@@ -13,22 +17,28 @@
                 if(index >= providers.length)
                     console.log(JSON.stringify(results, null, 2))
                 else
-                    client.login(providers[index])
+                    client.loginWithOptions(providers[index], { parameters: { response_type: "code id_token"} })
+                    // client.login(providers[index])
                         .then(function (result) {
-                            superagent
-                                .get('https://daauth.azurewebsites.net/.auth/me')
-                                .set('x-zumo-auth', result.mobileServiceAuthenticationToken)
-                                .end(function (err, res) {
-                                    if(err) {
-                                        alert(err.message)
-                                    } else {
-                                        results[providers[index]] = res.body
-                                    }
+                            return $.ajax({
+                                url: 'https://daauth.azurewebsites.net/.auth/refresh',
+                                method: 'GET',
+                                headers: { 'x-zumo-auth': result.mobileServiceAuthenticationToken }
+                            }).then(function (res) {
+                                refresh[providers[index]] = res
+                                return $.ajax({
+                                    url: 'https://daauth.azurewebsites.net/.auth/me',
+                                    method: 'GET',
+                                    headers: { 'x-zumo-auth': result.mobileServiceAuthenticationToken }
+                                }).then(function (res) {
+                                    results[providers[index]] = res
+                                    getNextIdentity(++index)
+                                }, function (err) {
+                                    alert(err.message)
                                     getNextIdentity(++index)
                                 })
-                        }, function (error) {
-                            alert(error.message)
                         })
+                    })
             }
         }
     </script>

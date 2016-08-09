@@ -1,0 +1,17 @@
+<html>
+    <script src="node_modules/azure-mobile-apps-client/dist/MobileServices.Web.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.1.0/superagent.js"></script>
+    <script>
+        window.onload = function () {
+            var client = new WindowsAzure.MobileServiceClient('https://daauth.azurewebsites.net');
+
+            client.login('facebook')
+                .then(function (result) {
+                    return 10;
+                })
+                .then(function () {
+                    alert('chained!');
+                })
+        }
+    </script>
+</html>

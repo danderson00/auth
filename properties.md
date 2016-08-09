@@ -19,6 +19,7 @@ access_token_secret|twitter|The corresponding secret for the access_token
 authentication_token|microsoftaccount|The JWT token issued by the underlying identity provider. See below.
 expires_on|facebook, google, microsoftaccount|The date and time the access_token expires
 id_token|aad, google|The JWT token used to access the underlying identity provider
+refresh_token|aad, google, microsoftaccount|An authentication token with an updated expiry date that can be used against Easy Auth. Only present if the /.auth/refresh endpoint has been called previously.
 
 ## User Claims
 
@@ -35,7 +36,8 @@ Claim types can be
 - A URN representing a provider specific claim 
 - A custom claim added by the identity provider
 
-The following is by no means a comprehensive list of claim types. They are representative of a typical set of claims returned from identity providers.
+The following is by no means a comprehensive list of claim types. They are representative of a typical set of claims returned from identity providers. 
+Keep in mind that the list of claims returned can vary depending on the authentication scopes that were requested from the identity provider.
 
 More information on specific identity provider claims can be found at the following locations:
 
@@ -99,6 +101,7 @@ Property|Provider|Description
 ---|---|---
 at_hash|google|A hash of the authentication token
 azp|google|The client ID of the Android app
+c_hash|aad|A hash of the authentication token
 email_verified|google|"true" if the email address has been verified
 ipaddr|aad|IP address of the client device
 locale|google|Locale of the client device, e.g. en-US
@@ -415,3 +418,14 @@ No tokens, identifiers, names or email addresses below are valid.
   "user_id": "Joe Bloggs"
 }
 ```
+
+# /.auth/refresh Endpoint Response Structure
+
+The token refresh endpoint will always return a response with the following structure:
+
+Property|Description
+---|---
+authenticationToken|An authentication token with an updated expiry date that can be used against Easy Auth
+user|An object containing details about the logged in user. Currently only contains the userId property that contains the Easy Auth user ID
+
+For more information on refreshing authentication tokens, see https://cgillum.tech/2016/03/07/app-service-token-store/.
