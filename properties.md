@@ -35,10 +35,12 @@ Claim types can be
 - A URI representing the specific node in a well known XML schema, for example, http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
 - A URN representing a provider specific claim 
 - A custom claim added by the identity provider
+ 
+Keep in mind that the list of claims returned can vary depending on the authentication scopes that were requested from the identity provider.
+For example, adding the `wl.emails` scope to microsoftaccount authentication will include the http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress
+claim in the response.
 
 The following is by no means a comprehensive list of claim types. They are representative of a typical set of claims returned from identity providers. 
-Keep in mind that the list of claims returned can vary depending on the authentication scopes that were requested from the identity provider.
-
 More information on specific identity provider claims can be found at the following locations:
 
 Provider|URL
