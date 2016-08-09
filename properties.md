@@ -26,8 +26,8 @@ A user claim object has the following properties:
 
 Property|Description
 ---|---
-typ|The type of the claim. See specific sections below for more information.
-val|The value of the claim. Always a string value.
+typ|The type of the claim. See specific sections below for more information
+val|The value of the claim
 
 Claim types can be
 - One of the standard [JWT registered claim names](https://tools.ietf.org/html/rfc7519#section-4.1)
