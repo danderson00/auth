@@ -32,6 +32,7 @@ val|The value of the claim. Always a string value.
 Claim types can be
 - One of the standard [JWT registered claim names](https://tools.ietf.org/html/rfc7519#section-4.1)
 - A URI representing the specific node in a well known XML schema, for example, http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
+- A custom claim added by the identity provider
 
 ### JWT Registered Claim Names
 
@@ -101,13 +102,13 @@ The microsoftaccount provider exposes an additional JWT token in the `authentica
 
 ```JSON
 {
- ver: 1,
- iss: "urn:windows:liveid",
- exp: 1470793861,
- uid: "aebe3ba54e18d3a4f33886d235fd7b46",
- aud: "sitename.azurewebsites.net",
- urn:microsoft:appuri: "appid://000000001C1175CD",
- urn:microsoft:appid: "000000001C1175CD"
+ "ver": 1,
+ "iss": "urn:windows:liveid",
+ "exp": 1470793861,
+ "uid": "aebe3ba54e18d3a4f33886d235fd7b46",
+ "aud": "sitename.azurewebsites.net",
+ "urn:microsoft:appuri": "appid://000000001C1175CD",
+ "urn:microsoft:appid": "000000001C1175CD"
 }
 ```
 
