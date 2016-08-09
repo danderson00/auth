@@ -37,6 +37,13 @@ Claim types can be
 
 The following is by no means a comprehensive list of claim types. They are representative of a typical set of claims returned from identity providers.
 
+More information on specific identity provider claims can be found at the following locations:
+
+Provider|URL
+---|---
+Microsoft|https://technet.microsoft.com/en-us/library/ee913589(v=ws.11).aspx
+Google|https://developers.google.com/identity/protocols/OpenIDConnect
+
 ### JWT Registered Claim Names
 
 Property|Description
