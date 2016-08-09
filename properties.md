@@ -32,6 +32,7 @@ val|The value of the claim
 Claim types can be
 - One of the standard [JWT registered claim names](https://tools.ietf.org/html/rfc7519#section-4.1)
 - A URI representing the specific node in a well known XML schema, for example, http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
+- A URN representing a provider specific claim 
 - A custom claim added by the identity provider
 
 The following is by no means a comprehensive list of claim types. They are representative of a typical set of claims returned from identity providers.
@@ -89,8 +90,8 @@ For more information, see https://technet.microsoft.com/en-us/library/ee913589(v
 
 Property|Provider|Description
 ---|---|---
-at_hash|google|Unknown
-azp|google|Unknown
+at_hash|google|A hash of the authentication token
+azp|google|The client ID of the Android app
 email_verified|google|"true" if the email address has been verified
 ipaddr|aad|IP address of the client device
 locale|google|Locale of the client device, e.g. en-US
