@@ -34,6 +34,8 @@ Claim types can be
 - A URI representing the specific node in a well known XML schema, for example, http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier
 - A custom claim added by the identity provider
 
+The following is by no means a comprehensive list of claim types. They are representative of a typical set of claims returned from identity providers.
+
 ### JWT Registered Claim Names
 
 Property|Description
