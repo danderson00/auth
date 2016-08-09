@@ -63,6 +63,8 @@ Date / time values are expressed in the number of seconds from 1970-01-01T00:00:
 |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn
 |http://schemas.xmlsoap.org/ws/2005/05/identity/claims/webpage
 
+For more information, see https://technet.microsoft.com/en-us/library/ee913589(v=ws.11).aspx.
+
 ### URN Based Claims
 
 |URN
