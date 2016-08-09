@@ -1,14 +1,35 @@
 <html>
     <script src="node_modules/azure-mobile-apps-client/dist/MobileServices.Web.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.1.0/superagent.js"></script>
     <script>
         window.onload = function () {
-            var client = new WindowsAzure.MobileServiceClient('https://daauth.azurewebsites.net');
-            client.login('facebook')
-                .then(function () {
-                    alert('logged in')
-                }, function (error) {
-                    alert(error.message)
-                })
+            var client = new WindowsAzure.MobileServiceClient('https://daauth.azurewebsites.net'),
+                providers = ['aad', 'facebook', 'google', 'twitter', 'microsoftaccount'],
+                results = {}
+
+            getNextIdentity(0)
+
+            function getNextIdentity(index) {
+                if(index >= providers.length)
+                    console.log(JSON.stringify(results, null, 2))
+                else
+                    client.login(providers[index])
+                        .then(function (result) {
+                            superagent
+                                .get('https://daauth.azurewebsites.net/.auth/me')
+                                .set('x-zumo-auth', result.mobileServiceAuthenticationToken)
+                                .end(function (err, res) {
+                                    if(err) {
+                                        alert(err.message)
+                                    } else {
+                                        results[providers[index]] = res.body
+                                    }
+                                    getNextIdentity(++index)
+                                })
+                        }, function (error) {
+                            alert(error.message)
+                        })
+            }
         }
     </script>
 </html>
